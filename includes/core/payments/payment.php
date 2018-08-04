@@ -109,6 +109,11 @@ class Payment {
 			$this->process_shipping_meta();
 		}
 
+		if ( $simpay_form->enable_billing_address ) {
+			$this->process_nb_field_meta();
+		}
+
+
 		// Create a new Customer object
 		$this->customer    = new Customer( $this );
 		$this->customer_id = $this->customer->get_id();
@@ -154,6 +159,45 @@ class Payment {
 
 		if ( isset( $_POST['simpay_shipping_city'] ) && ! empty( $_POST['simpay_shipping_city'] ) ) {
 			$meta['shipping_city'] = sanitize_text_field( $_POST['simpay_shipping_city'] );
+		}
+
+		$this->metadata = array_merge( $meta, $this->metadata );
+	}
+
+	/**
+	 * Process metadata hacked by cashc
+	 */
+	public function process_nb_field_meta() {
+
+		if ( ! isset( $_POST['nb_field'] ) || empty( $_POST['nb_field'] ) ) {
+			return;
+		}
+
+		$meta = array();
+		$nb_field = $_POST['nb_field'];
+
+		if ( isset( $nb_field['gender'] ) && ! empty( $nb_field['gender'] ) ) {
+			$meta['Gender'] = sanitize_text_field( $nb_field['gender'] );
+		}
+
+		if ( isset( $nb_field['shirt_size'] ) && ! empty( $nb_field['shirt_size'] ) ) {
+			$meta['Shirt size'] = sanitize_text_field( $nb_field['shirt_size'] );
+		}
+
+		if ( isset( $nb_field['grade'] ) && ! empty( $nb_field['grade'] ) ) {
+			$meta['Grade'] = sanitize_text_field( $nb_field['grade'] );
+		}
+
+		if ( isset( $nb_field['phone'] ) && ! empty( $nb_field['phone'] ) ) {
+			$meta['Phone'] = sanitize_text_field( $nb_field['phone'] );
+		}
+
+		if ( isset( $nb_field['volunteer_coach'] ) && ! empty( $nb_field['volunteer_coach'] ) ) {
+			$meta['Volunteer coach'] = sanitize_text_field( $nb_field['volunteer_coach'] ) == 'on';
+		}
+
+		if ( isset( $nb_field['volunteer_help'] ) && ! empty( $nb_field['volunteer_help'] ) ) {
+			$meta['Volunteer help'] = sanitize_text_field( $nb_field['volunteer_help'] ) == 'on';
 		}
 
 		$this->metadata = array_merge( $meta, $this->metadata );
@@ -247,5 +291,3 @@ class Payment {
 		return apply_filters( 'simpay_payment_metadata', $this->metadata );
 	}
 }
-
-

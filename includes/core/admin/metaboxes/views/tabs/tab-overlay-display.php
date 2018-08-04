@@ -154,7 +154,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<tr class="simpay-panel-field">
 			<th>
-				<label for="_enable_billing_address"><?php esc_html_e( 'Enable Billing Address', 'stripe' ); ?></label>
+				<label for="_enable_billing_address"><?php esc_html_e( 'Enable Billing Address (plus gender, shirt size, phone, and volunteer options)', 'stripe' ); ?></label>
 			</th>
 			<td>
 				<?php

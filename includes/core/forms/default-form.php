@@ -62,6 +62,47 @@ class Default_Form extends Form {
 
 		$html .= '<form action="" method="POST" class="simpay-checkout-form ' . esc_attr( $id ) . '" id="' . esc_attr( $id ) . '" data-simpay-form-id="' . esc_attr( $this->id ) . '">';
 
+		// cashc hack for adding metadata to Stripe
+		if ( strpos(strtolower($this->post->post_title), 'league') !== false || strpos(strtolower($this->post->post_title), 'camp') !== false ) {
+			$html .= '<p><div class="column">';
+			$html .= '<label for="nb_field[gender]">Gender &nbsp;</label>';
+			$html .= '<div style="margin-left:10px;"><input type="radio" name="nb_field[gender]" value="Boy" />Boy</div>';
+			$html .= '<div style="margin-left:10px;"><input type="radio" name="nb_field[gender]" checked="checked" value="Girl" />Girl</div>';
+			$html .= '</div></p>';
+
+			// only leagues have shirts, not camp
+			if (strpos(strtolower($this->post->post_title), 'league') !== false) {
+				$shirtSizes = array('Youth Small', 'Youth Medium', 'Youth Large', 'Adult Small', 'Adult Medium', 'Adult Large', 'Adult X-Large');
+				$html .= '<p>';
+				$html .= '<label for="nb_field[shirt_size]">T-Shirt Size &nbsp;</label>';
+				$html .= '<select name="nb_field[shirt_size]">';
+				$html .= implode(' ', array_map(function($opt) { return '<option>' . $opt . '</option>'; }, $shirtSizes));
+				$html .= '</select>';
+				$html .= '</p>';
+			}
+
+			$grades = array('Pre-Kindergarten', 'Kindergarten', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th');
+			$html .= '<p>';
+			$html .= '<label for="nb_field[grade]">Grade &nbsp;</label>';
+			$html .= '<select name="nb_field[grade]">';
+			$html .= implode(' ', array_map(function($opt) { return '<option>' . $opt . '</option>'; }, $grades));
+			$html .= '</select>';
+			$html .= '</p>';
+
+			$html .= '<p>';
+			$html .= '<label for="nb_field[phone]">Phone &nbsp;</label>';
+			$html .= '<input style="width: 200px;" type="text" name="nb_field[phone]" placeholder="810-123-1234" maxlength="14" />';
+			$html .= '</p>';
+
+			$html .= '<p><div class="column">';
+			$html .= '<div>Volunteer</div>';
+			$html .= '<div style="margin-left:10px;"><input type="checkbox" name="nb_field[volunteer_coach]" />';
+			$html .= '<label for="nb_field[volunteer_coach]">Coach</label></div>';
+			$html .= '<div style="margin-left:10px;"><input type="checkbox" name="nb_field[volunteer_help]" />';
+			$html .= '<label for="nb_field[volunteer_help]">Help in other ways</label></div>';
+			$html .= '</div></p>';
+		}
+
 		if ( ! empty( $this->custom_fields ) && is_array( $this->custom_fields ) ) {
 			$html .= $this->print_custom_fields();
 		}

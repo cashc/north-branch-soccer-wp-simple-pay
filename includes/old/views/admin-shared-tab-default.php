@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Represents the view for the Default Settings tab - Shared between SP Lite & Pro
@@ -25,8 +25,8 @@ global $sc_options;
 
 	<div>
 		<label for="<?php echo esc_attr( $sc_options->get_setting_id( 'name' ) ); ?>"><?php _e( 'Site Name', 'stripe' ); ?></label>
-		<?php 
-			$sc_options->textbox( 'name', 'regular-text' ); 
+		<?php
+			$sc_options->textbox( 'name', 'regular-text' );
 			$sc_options->description( __( 'The name of your store or website. Defaults to Site Title if left blank.', 'stripe' ) );
 		?>
 	</div>
@@ -41,7 +41,7 @@ global $sc_options;
 
 	<div>
 		<label for="<?php echo esc_attr( $sc_options->get_setting_id( 'image_url' ) ); ?>"><?php _e( 'Image URL', 'stripe' ); ?></label>
-		<?php 
+		<?php
 			$sc_options->textbox( 'image_url', 'regular-text' );
 			$sc_options->description( __( 'A URL pointing to a square image of your brand or product. The recommended minimum size is 128x128px.', 'stripe' ) );
 		?>
@@ -57,7 +57,7 @@ global $sc_options;
 
 	<div>
 		<label for="<?php echo esc_attr( $sc_options->get_setting_id( 'checkout_button_label' ) ); ?>"><?php _e( 'Checkout Button Label', 'stripe' ); ?></label>
-		<?php 
+		<?php
 			$sc_options->textbox( 'checkout_button_label', 'regular-text' );
 			$sc_options->description( __( 'Text to display on the button within the checkout overlay. Insert {{amount}} where you\'d like to show the amount. If {{amount}} is omitted, it will be appended at the end of the button text unless it is a free trial.', 'stripe' ) );
 		?>
@@ -65,8 +65,8 @@ global $sc_options;
 
 	<div>
 		<label for="<?php echo esc_attr( $sc_options->get_setting_id( 'success_redirect_url' ) ); ?>"><?php _e( 'Success Redirect URL', 'stripe' ); ?></label>
-		<?php 
-			$sc_options->textbox( 'success_redirect_url', 'regular-text' ); 
+		<?php
+			$sc_options->textbox( 'success_redirect_url', 'regular-text' );
 			$sc_options->description( __( 'The URL that the user should be redirected to after a successful payment.', 'stripe' ) );
 		?>
 	</div>
@@ -79,14 +79,14 @@ global $sc_options;
 
 	<div>
 		<label for="<?php echo esc_attr( $sc_options->get_setting_id( 'failure_redirect_url' ) ); ?>"><?php _e( 'Failure Redirect URL', 'stripe' ); ?></label>
-		<?php 
-			$sc_options->textbox( 'failure_redirect_url', 'regular-text' ); 
+		<?php
+			$sc_options->textbox( 'failure_redirect_url', 'regular-text' );
 			$sc_options->description( __( 'The URL that the user should be redirected to after a failed payment.', 'stripe' ) );
 		?>
 	</div>
 
 	<div>
-		<label for="<?php echo esc_attr( $sc_options->get_setting_id( 'billing' ) ); ?>"><?php _e( 'Enable Billing Address', 'stripe' ); ?></label>
+		<label for="<?php echo esc_attr( $sc_options->get_setting_id( 'billing' ) ); ?>"><?php _e( 'Enable Billing Address (plus gender, shirt size, phone, and volunteer options)', 'stripe' ); ?></label>
 		<?php $sc_options->checkbox( 'billing' ); ?>
 		<span><?php _e( 'Require the user to enter their billing address during checkout.', 'stripe' ); ?></span>
 	</div>
@@ -102,7 +102,7 @@ global $sc_options;
 		<?php $sc_options->checkbox( 'enable_remember' ); ?>
 		<span><?php _e( 'Adds a "Remember Me" option to the checkout form to allow the user to store their credit card for future use with other sites using Stripe.', 'stripe' ); ?></span>
 	</div>
-	
+
 	<div>
 		<label for="<?php echo esc_attr( $sc_options->get_setting_id( 'locale' ) ); ?>"><?php _e( 'Set Locale', 'stripe' ); ?></label>
 		<?php
@@ -125,7 +125,7 @@ global $sc_options;
 		<?php $sc_options->checkbox( 'uninstall_save_settings' ); ?>
 		<span><?php _e( 'Save your settings when uninstalling this plugin. Useful when upgrading or re-installing.', 'stripe' ); ?></span>
 	</div>
-	
-	
+
+
 	<?php do_action( 'sc_settings_tab_default' ); ?>
 </div>
