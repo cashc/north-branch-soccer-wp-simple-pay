@@ -176,12 +176,16 @@ class Payment {
 		$meta = array();
 		$nb_field = $_POST['nb_field'];
 
+		if ( isset( $nb_field['player_name'] ) && ! empty( $nb_field['player_name'] ) ) {
+			$meta['Player Name'] = sanitize_text_field( $nb_field['player_name'] );
+		}
+
 		if ( isset( $nb_field['gender'] ) && ! empty( $nb_field['gender'] ) ) {
 			$meta['Gender'] = sanitize_text_field( $nb_field['gender'] );
 		}
 
 		if ( isset( $nb_field['shirt_size'] ) && ! empty( $nb_field['shirt_size'] ) ) {
-			$meta['Shirt size'] = sanitize_text_field( $nb_field['shirt_size'] );
+			$meta['Shirt Size'] = sanitize_text_field( $nb_field['shirt_size'] );
 		}
 
 		if ( isset( $nb_field['grade'] ) && ! empty( $nb_field['grade'] ) ) {
@@ -193,11 +197,11 @@ class Payment {
 		}
 
 		if ( isset( $nb_field['volunteer_coach'] ) && ! empty( $nb_field['volunteer_coach'] ) ) {
-			$meta['Volunteer coach'] = sanitize_text_field( $nb_field['volunteer_coach'] ) == 'on';
+			$meta['Volunteer Coach'] = sanitize_text_field( $nb_field['volunteer_coach'] ) == 'on';
 		}
 
 		if ( isset( $nb_field['volunteer_help'] ) && ! empty( $nb_field['volunteer_help'] ) ) {
-			$meta['Volunteer help'] = sanitize_text_field( $nb_field['volunteer_help'] ) == 'on';
+			$meta['Volunteer Help'] = sanitize_text_field( $nb_field['volunteer_help'] ) == 'on';
 		}
 
 		$this->metadata = array_merge( $meta, $this->metadata );
